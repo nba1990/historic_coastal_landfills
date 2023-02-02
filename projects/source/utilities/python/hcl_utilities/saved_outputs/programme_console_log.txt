@@ -1,0 +1,862 @@
+/bin/python /source/historic_coastal_landfills/projects/source/utilities/python/hcl_utilities/plot_hcl_site_markers_on_map.py
+2023-02-02 15:17:28.651 | INFO     | __main__:get_column_letters_from_names:98 - Reading initial dataset file: /source/historic_coastal_landfills/datasets/UK_Historic_Landfill_Sites.xlsx
+2023-02-02 15:17:28.651 | INFO     | __main__:get_column_letters_from_names:99 - Converting useful column header names to Excel column letters and indices.
+2023-02-02 15:17:29.876 | INFO     | __main__:run_first_stage:453 - Running first stage of the pipeline.
+2023-02-02 15:17:29.876 | INFO     | __main__:read_dataset_to_df:139 - Reading initial dataset file: /source/historic_coastal_landfills/datasets/UK_Historic_Landfill_Sites.xlsx
+2023-02-02 15:17:40.957 | INFO     | __main__:filter_dataset:156 - Filtering dataset with initial shape: (19811, 50), filter_column_name: New Update CE Property Jan 2023?, filter_criteria: ['Yes', 'Adjacent'], combination_operator: or_
+2023-02-02 15:17:40.960 | INFO     | __main__:filter_dataset:175 - Filtered dataset shape: (281, 50) out of (19811, 50)
+2023-02-02 15:17:40.961 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 0 of 281
+2023-02-02 15:17:41.058 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:41.309 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:41.310 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 1 of 281
+2023-02-02 15:17:41.330 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:41.997 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:41.997 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 2 of 281
+2023-02-02 15:17:42.018 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:42.318 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:42.319 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 3 of 281
+2023-02-02 15:17:42.339 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:42.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:42.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 4 of 281
+2023-02-02 15:17:42.835 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:43.325 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:43.325 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 5 of 281
+2023-02-02 15:17:43.346 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:44.006 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:44.007 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 6 of 281
+2023-02-02 15:17:44.028 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:44.319 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:44.319 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 7 of 281
+2023-02-02 15:17:44.338 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:44.807 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:44.808 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 8 of 281
+2023-02-02 15:17:44.827 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:45.341 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:45.341 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 9 of 281
+2023-02-02 15:17:45.361 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:45.819 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:45.820 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 10 of 281
+2023-02-02 15:17:45.838 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:46.325 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:46.326 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 11 of 281
+2023-02-02 15:17:46.347 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:46.815 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:46.815 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 12 of 281
+2023-02-02 15:17:46.836 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:47.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:47.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 13 of 281
+2023-02-02 15:17:47.332 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:47.816 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:47.816 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 14 of 281
+2023-02-02 15:17:47.836 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:48.317 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:48.318 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 15 of 281
+2023-02-02 15:17:48.337 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:48.808 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:48.808 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 16 of 281
+2023-02-02 15:17:48.828 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:49.317 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:49.317 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 17 of 281
+2023-02-02 15:17:49.336 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:49.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:49.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 18 of 281
+2023-02-02 15:17:49.832 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:50.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:50.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 19 of 281
+2023-02-02 15:17:50.335 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:50.820 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:50.820 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 20 of 281
+2023-02-02 15:17:50.841 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:51.321 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:51.321 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 21 of 281
+2023-02-02 15:17:51.342 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:51.807 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:51.807 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 22 of 281
+2023-02-02 15:17:51.827 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:52.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:52.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 23 of 281
+2023-02-02 15:17:52.334 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:52.806 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:52.806 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 24 of 281
+2023-02-02 15:17:52.827 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:53.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:53.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 25 of 281
+2023-02-02 15:17:53.330 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:53.828 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:53.828 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 26 of 281
+2023-02-02 15:17:53.847 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:54.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:54.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 27 of 281
+2023-02-02 15:17:54.332 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:54.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:54.810 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 28 of 281
+2023-02-02 15:17:54.831 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:55.315 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:55.315 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 29 of 281
+2023-02-02 15:17:55.334 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:55.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:55.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 30 of 281
+2023-02-02 15:17:55.830 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:56.308 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:56.308 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 31 of 281
+2023-02-02 15:17:56.328 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:56.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:56.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 32 of 281
+2023-02-02 15:17:56.833 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:57.319 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:57.319 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 33 of 281
+2023-02-02 15:17:57.341 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:57.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:57.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 34 of 281
+2023-02-02 15:17:57.832 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:58.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:58.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 35 of 281
+2023-02-02 15:17:58.331 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:58.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:58.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 36 of 281
+2023-02-02 15:17:58.835 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:59.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:59.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 37 of 281
+2023-02-02 15:17:59.332 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:17:59.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:17:59.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 38 of 281
+2023-02-02 15:17:59.837 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:00.315 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:00.315 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 39 of 281
+2023-02-02 15:18:00.336 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:00.808 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:00.808 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 40 of 281
+2023-02-02 15:18:00.827 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:01.309 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:01.309 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 41 of 281
+2023-02-02 15:18:01.330 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:01.827 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:01.828 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 42 of 281
+2023-02-02 15:18:01.846 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:02.304 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:02.304 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 43 of 281
+2023-02-02 15:18:02.325 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:02.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:02.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 44 of 281
+2023-02-02 15:18:02.828 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:03.502 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:03.502 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 45 of 281
+2023-02-02 15:18:03.522 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:03.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:03.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 46 of 281
+2023-02-02 15:18:03.832 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:04.308 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:04.308 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 47 of 281
+2023-02-02 15:18:04.328 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:04.810 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:04.810 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 48 of 281
+2023-02-02 15:18:04.832 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:05.316 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:05.316 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 49 of 281
+2023-02-02 15:18:05.336 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:05.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:05.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 50 of 281
+2023-02-02 15:18:05.833 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:06.316 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:06.316 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 51 of 281
+2023-02-02 15:18:06.335 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:06.817 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:06.817 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 52 of 281
+2023-02-02 15:18:06.837 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:07.310 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:07.310 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 53 of 281
+2023-02-02 15:18:07.330 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:07.823 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:07.823 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 54 of 281
+2023-02-02 15:18:07.843 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:08.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:08.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 55 of 281
+2023-02-02 15:18:08.332 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:08.810 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:08.810 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 56 of 281
+2023-02-02 15:18:08.828 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:09.307 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:09.307 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 57 of 281
+2023-02-02 15:18:09.325 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:09.811 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:09.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 58 of 281
+2023-02-02 15:18:09.830 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:10.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:10.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 59 of 281
+2023-02-02 15:18:10.333 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:10.817 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:10.817 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 60 of 281
+2023-02-02 15:18:10.837 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:11.318 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:11.318 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 61 of 281
+2023-02-02 15:18:11.337 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:11.819 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:11.819 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 62 of 281
+2023-02-02 15:18:11.838 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:12.308 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:12.308 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 63 of 281
+2023-02-02 15:18:12.327 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:12.810 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:12.811 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 64 of 281
+2023-02-02 15:18:12.830 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:13.317 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:13.317 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 65 of 281
+2023-02-02 15:18:13.337 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:13.804 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:13.805 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 66 of 281
+2023-02-02 15:18:13.825 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:14.305 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:14.306 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 67 of 281
+2023-02-02 15:18:14.325 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:14.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:14.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 68 of 281
+2023-02-02 15:18:14.831 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:15.307 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:15.308 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 69 of 281
+2023-02-02 15:18:15.328 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:15.804 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:15.804 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 70 of 281
+2023-02-02 15:18:15.825 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:16.306 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:16.307 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 71 of 281
+2023-02-02 15:18:16.325 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:16.808 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:16.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 72 of 281
+2023-02-02 15:18:16.828 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:17.306 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:17.306 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 73 of 281
+2023-02-02 15:18:17.325 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:17.807 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:17.808 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 74 of 281
+2023-02-02 15:18:17.830 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:18.310 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:18.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 75 of 281
+2023-02-02 15:18:18.332 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:18.810 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:18.811 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 76 of 281
+2023-02-02 15:18:18.841 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:19.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:19.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 77 of 281
+2023-02-02 15:18:19.335 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:19.807 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:19.807 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 78 of 281
+2023-02-02 15:18:19.829 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:20.309 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:20.309 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 79 of 281
+2023-02-02 15:18:20.329 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:20.810 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:20.810 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 80 of 281
+2023-02-02 15:18:20.830 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:21.307 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:21.307 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 81 of 281
+2023-02-02 15:18:21.326 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:21.807 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:21.807 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 82 of 281
+2023-02-02 15:18:21.831 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:22.307 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:22.308 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 83 of 281
+2023-02-02 15:18:22.330 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:22.806 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:22.807 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 84 of 281
+2023-02-02 15:18:22.830 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:23.318 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:23.319 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 85 of 281
+2023-02-02 15:18:23.338 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:23.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:23.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 86 of 281
+2023-02-02 15:18:23.835 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:24.326 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:24.326 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 87 of 281
+2023-02-02 15:18:24.347 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:24.808 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:24.808 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 88 of 281
+2023-02-02 15:18:24.834 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:25.308 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:25.308 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 89 of 281
+2023-02-02 15:18:25.328 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:25.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:25.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 90 of 281
+2023-02-02 15:18:25.839 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:26.309 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:26.310 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 91 of 281
+2023-02-02 15:18:26.328 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:26.815 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:26.815 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 92 of 281
+2023-02-02 15:18:26.841 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:27.320 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:27.320 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 93 of 281
+2023-02-02 15:18:27.339 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:27.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:27.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 94 of 281
+2023-02-02 15:18:27.842 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:28.309 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:28.310 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 95 of 281
+2023-02-02 15:18:28.328 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:28.808 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:28.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 96 of 281
+2023-02-02 15:18:28.838 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:29.309 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:29.310 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 97 of 281
+2023-02-02 15:18:29.329 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:29.808 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:29.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 98 of 281
+2023-02-02 15:18:29.838 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:30.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:30.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 99 of 281
+2023-02-02 15:18:30.332 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:30.819 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:30.819 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 100 of 281
+2023-02-02 15:18:30.842 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:31.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:31.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 101 of 281
+2023-02-02 15:18:31.332 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:31.816 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:31.816 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 102 of 281
+2023-02-02 15:18:31.846 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:32.309 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:32.309 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 103 of 281
+2023-02-02 15:18:32.329 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:32.815 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:32.815 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 104 of 281
+2023-02-02 15:18:32.845 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:33.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:33.315 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 105 of 281
+2023-02-02 15:18:33.334 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:33.818 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:33.818 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 106 of 281
+2023-02-02 15:18:33.848 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:34.324 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:34.324 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 107 of 281
+2023-02-02 15:18:34.344 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:34.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:34.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 108 of 281
+2023-02-02 15:18:34.845 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:35.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:35.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 109 of 281
+2023-02-02 15:18:35.332 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:35.820 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:35.821 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 110 of 281
+2023-02-02 15:18:35.853 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:36.321 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:36.322 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 111 of 281
+2023-02-02 15:18:36.342 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:36.817 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:36.817 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 112 of 281
+2023-02-02 15:18:36.848 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:37.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:37.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 113 of 281
+2023-02-02 15:18:37.331 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:37.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:37.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 114 of 281
+2023-02-02 15:18:37.842 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:38.336 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:38.336 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 115 of 281
+2023-02-02 15:18:38.355 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:38.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:38.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 116 of 281
+2023-02-02 15:18:38.844 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:39.332 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:39.332 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 117 of 281
+2023-02-02 15:18:39.351 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:39.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:39.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 118 of 281
+2023-02-02 15:18:39.841 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:40.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:40.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 119 of 281
+2023-02-02 15:18:40.333 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:40.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:40.810 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 120 of 281
+2023-02-02 15:18:40.834 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:41.307 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:41.308 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 121 of 281
+2023-02-02 15:18:41.328 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:41.810 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:41.810 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 122 of 281
+2023-02-02 15:18:41.834 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:42.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:42.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 123 of 281
+2023-02-02 15:18:42.340 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:42.805 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:42.805 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 124 of 281
+2023-02-02 15:18:42.826 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:43.317 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:43.318 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 125 of 281
+2023-02-02 15:18:43.338 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:43.848 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:43.848 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 126 of 281
+2023-02-02 15:18:43.874 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:44.317 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:44.317 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 127 of 281
+2023-02-02 15:18:44.337 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:44.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:44.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 128 of 281
+2023-02-02 15:18:44.833 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:45.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:45.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 129 of 281
+2023-02-02 15:18:45.334 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:45.911 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:45.911 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 130 of 281
+2023-02-02 15:18:45.932 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:46.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:46.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 131 of 281
+2023-02-02 15:18:46.333 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:46.824 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:46.824 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 132 of 281
+2023-02-02 15:18:46.845 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:47.320 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:47.320 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 133 of 281
+2023-02-02 15:18:47.339 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:47.806 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:47.806 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 134 of 281
+2023-02-02 15:18:47.828 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:48.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:48.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 135 of 281
+2023-02-02 15:18:48.331 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:48.806 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:48.806 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 136 of 281
+2023-02-02 15:18:48.826 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:49.306 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:49.306 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 137 of 281
+2023-02-02 15:18:49.325 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:49.802 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:49.803 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 138 of 281
+2023-02-02 15:18:49.824 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:50.316 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:50.316 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 139 of 281
+2023-02-02 15:18:50.337 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:50.810 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:50.811 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 140 of 281
+2023-02-02 15:18:50.830 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:51.466 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:51.466 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 141 of 281
+2023-02-02 15:18:51.486 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:51.806 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:51.807 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 142 of 281
+2023-02-02 15:18:51.827 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:52.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:52.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 143 of 281
+2023-02-02 15:18:52.332 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:52.816 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:52.816 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 144 of 281
+2023-02-02 15:18:52.836 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:53.306 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:53.306 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 145 of 281
+2023-02-02 15:18:53.324 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:53.807 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:53.807 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 146 of 281
+2023-02-02 15:18:53.827 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:54.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:54.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 147 of 281
+2023-02-02 15:18:54.334 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:54.811 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:54.811 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 148 of 281
+2023-02-02 15:18:54.830 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:55.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:55.315 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 149 of 281
+2023-02-02 15:18:55.334 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:55.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:55.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 150 of 281
+2023-02-02 15:18:55.832 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:56.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:56.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 151 of 281
+2023-02-02 15:18:56.331 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:56.810 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:56.810 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 152 of 281
+2023-02-02 15:18:56.829 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:57.308 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:57.308 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 153 of 281
+2023-02-02 15:18:57.327 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:57.821 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:57.821 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 154 of 281
+2023-02-02 15:18:57.840 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:58.315 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:58.316 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 155 of 281
+2023-02-02 15:18:58.336 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:58.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:58.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 156 of 281
+2023-02-02 15:18:58.833 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:59.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:59.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 157 of 281
+2023-02-02 15:18:59.333 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:18:59.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:18:59.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 158 of 281
+2023-02-02 15:18:59.834 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:00.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:00.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 159 of 281
+2023-02-02 15:19:00.333 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:00.805 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:00.805 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 160 of 281
+2023-02-02 15:19:00.823 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:01.321 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:01.321 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 161 of 281
+2023-02-02 15:19:01.340 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:01.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:01.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 162 of 281
+2023-02-02 15:19:01.833 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:02.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:02.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 163 of 281
+2023-02-02 15:19:02.331 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:02.805 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:02.805 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 164 of 281
+2023-02-02 15:19:02.824 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:03.320 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:03.320 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 165 of 281
+2023-02-02 15:19:03.340 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:03.817 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:03.817 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 166 of 281
+2023-02-02 15:19:03.836 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:04.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:04.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 167 of 281
+2023-02-02 15:19:04.333 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:04.811 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:04.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 168 of 281
+2023-02-02 15:19:04.832 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:05.318 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:05.318 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 169 of 281
+2023-02-02 15:19:05.338 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:05.818 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:05.819 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 170 of 281
+2023-02-02 15:19:05.838 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:06.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:06.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 171 of 281
+2023-02-02 15:19:06.331 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:06.817 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:06.817 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 172 of 281
+2023-02-02 15:19:06.836 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:07.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:07.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 173 of 281
+2023-02-02 15:19:07.333 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:07.817 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:07.818 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 174 of 281
+2023-02-02 15:19:07.837 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:08.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:08.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 175 of 281
+2023-02-02 15:19:08.335 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:08.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:08.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 176 of 281
+2023-02-02 15:19:08.832 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:09.309 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:09.309 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 177 of 281
+2023-02-02 15:19:09.328 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:09.819 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:09.819 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 178 of 281
+2023-02-02 15:19:09.839 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:10.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:10.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 179 of 281
+2023-02-02 15:19:10.332 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:10.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:10.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 180 of 281
+2023-02-02 15:19:10.832 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:11.308 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:11.308 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 181 of 281
+2023-02-02 15:19:11.327 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:11.807 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:11.807 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 182 of 281
+2023-02-02 15:19:11.827 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:12.307 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:12.307 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 183 of 281
+2023-02-02 15:19:12.326 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:12.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:12.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 184 of 281
+2023-02-02 15:19:12.833 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:13.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:13.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 185 of 281
+2023-02-02 15:19:13.334 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:13.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:13.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 186 of 281
+2023-02-02 15:19:13.832 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:14.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:14.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 187 of 281
+2023-02-02 15:19:14.333 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:14.819 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:14.819 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 188 of 281
+2023-02-02 15:19:14.840 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:15.323 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:15.323 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 189 of 281
+2023-02-02 15:19:15.343 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:15.821 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:15.821 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 190 of 281
+2023-02-02 15:19:15.841 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:16.319 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:16.319 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 191 of 281
+2023-02-02 15:19:16.338 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:16.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:16.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 192 of 281
+2023-02-02 15:19:16.834 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:17.319 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:17.319 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 193 of 281
+2023-02-02 15:19:17.339 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:17.827 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:17.827 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 194 of 281
+2023-02-02 15:19:17.847 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:18.460 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:18.460 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 195 of 281
+2023-02-02 15:19:18.480 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:18.805 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:18.805 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 196 of 281
+2023-02-02 15:19:18.825 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:19.320 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:19.320 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 197 of 281
+2023-02-02 15:19:19.340 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:19.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:19.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 198 of 281
+2023-02-02 15:19:19.838 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:20.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:20.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 199 of 281
+2023-02-02 15:19:20.332 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:20.917 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:20.918 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 200 of 281
+2023-02-02 15:19:20.938 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:21.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:21.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 201 of 281
+2023-02-02 15:19:21.333 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:21.850 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:21.850 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 202 of 281
+2023-02-02 15:19:21.870 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:22.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:22.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 203 of 281
+2023-02-02 15:19:22.335 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:22.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:22.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 204 of 281
+2023-02-02 15:19:22.832 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:23.321 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:23.322 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 205 of 281
+2023-02-02 15:19:23.340 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:23.817 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:23.817 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 206 of 281
+2023-02-02 15:19:23.836 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:24.320 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:24.320 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 207 of 281
+2023-02-02 15:19:24.340 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:24.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:24.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 208 of 281
+2023-02-02 15:19:24.828 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:25.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:25.312 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 209 of 281
+2023-02-02 15:19:25.331 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:25.811 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:25.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 210 of 281
+2023-02-02 15:19:25.832 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:26.321 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:26.321 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 211 of 281
+2023-02-02 15:19:26.340 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:26.811 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:26.811 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 212 of 281
+2023-02-02 15:19:26.832 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:27.316 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:27.316 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 213 of 281
+2023-02-02 15:19:27.335 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:27.822 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:27.823 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 214 of 281
+2023-02-02 15:19:27.842 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:28.321 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:28.321 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 215 of 281
+2023-02-02 15:19:28.342 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:28.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:28.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 216 of 281
+2023-02-02 15:19:28.828 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:29.320 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:29.321 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 217 of 281
+2023-02-02 15:19:29.341 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:29.806 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:29.806 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 218 of 281
+2023-02-02 15:19:29.826 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:30.320 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:30.320 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 219 of 281
+2023-02-02 15:19:30.340 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:30.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:30.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 220 of 281
+2023-02-02 15:19:30.835 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:31.310 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:31.310 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 221 of 281
+2023-02-02 15:19:31.329 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:31.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:31.815 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 222 of 281
+2023-02-02 15:19:31.835 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:32.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:32.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 223 of 281
+2023-02-02 15:19:32.333 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:32.818 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:32.819 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 224 of 281
+2023-02-02 15:19:32.838 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:33.314 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:33.315 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 225 of 281
+2023-02-02 15:19:33.336 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:33.821 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:33.821 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 226 of 281
+2023-02-02 15:19:33.840 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:34.318 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:34.319 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 227 of 281
+2023-02-02 15:19:34.339 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:34.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:34.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 228 of 281
+2023-02-02 15:19:34.839 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:35.320 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:35.320 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 229 of 281
+2023-02-02 15:19:35.341 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:35.815 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:35.815 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 230 of 281
+2023-02-02 15:19:35.836 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:36.322 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:36.322 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 231 of 281
+2023-02-02 15:19:36.343 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:36.823 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:36.823 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 232 of 281
+2023-02-02 15:19:36.841 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:37.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:37.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 233 of 281
+2023-02-02 15:19:37.333 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:37.804 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:37.804 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 234 of 281
+2023-02-02 15:19:37.824 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:38.315 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:38.315 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 235 of 281
+2023-02-02 15:19:38.334 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:38.811 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:38.811 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 236 of 281
+2023-02-02 15:19:38.830 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:39.307 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:39.308 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 237 of 281
+2023-02-02 15:19:39.327 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:39.817 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:39.818 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 238 of 281
+2023-02-02 15:19:39.837 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:40.305 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:40.305 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 239 of 281
+2023-02-02 15:19:40.324 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:40.815 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:40.816 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 240 of 281
+2023-02-02 15:19:40.835 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:41.318 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:41.318 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 241 of 281
+2023-02-02 15:19:41.337 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:41.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:41.812 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 242 of 281
+2023-02-02 15:19:41.832 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:42.305 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:42.305 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 243 of 281
+2023-02-02 15:19:42.324 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:42.819 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:42.819 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 244 of 281
+2023-02-02 15:19:42.837 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:43.306 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:43.306 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 245 of 281
+2023-02-02 15:19:43.325 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:43.803 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:43.804 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 246 of 281
+2023-02-02 15:19:43.823 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:44.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:44.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 247 of 281
+2023-02-02 15:19:44.330 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:44.823 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:44.824 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 248 of 281
+2023-02-02 15:19:44.843 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:45.310 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:45.310 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 249 of 281
+2023-02-02 15:19:45.329 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:45.818 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:45.818 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 250 of 281
+2023-02-02 15:19:45.837 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:46.350 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:46.351 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 251 of 281
+2023-02-02 15:19:46.370 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:46.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:46.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 252 of 281
+2023-02-02 15:19:46.833 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:47.542 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:47.542 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 253 of 281
+2023-02-02 15:19:47.561 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:47.808 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:47.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 254 of 281
+2023-02-02 15:19:47.828 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:48.326 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:48.326 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 255 of 281
+2023-02-02 15:19:48.346 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:48.817 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:48.817 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 256 of 281
+2023-02-02 15:19:48.837 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:49.309 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:49.309 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 257 of 281
+2023-02-02 15:19:49.328 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:49.819 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:49.819 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 258 of 281
+2023-02-02 15:19:49.842 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:50.310 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:50.310 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 259 of 281
+2023-02-02 15:19:50.331 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:50.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:50.813 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 260 of 281
+2023-02-02 15:19:50.834 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:51.320 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:51.320 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 261 of 281
+2023-02-02 15:19:51.340 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:51.821 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:51.821 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 262 of 281
+2023-02-02 15:19:51.842 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:52.310 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:52.310 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 263 of 281
+2023-02-02 15:19:52.334 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:52.807 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:52.807 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 264 of 281
+2023-02-02 15:19:52.828 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:53.317 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:53.317 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 265 of 281
+2023-02-02 15:19:53.338 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:53.806 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:53.806 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 266 of 281
+2023-02-02 15:19:53.825 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:54.317 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:54.317 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 267 of 281
+2023-02-02 15:19:54.337 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:54.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:54.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 268 of 281
+2023-02-02 15:19:54.828 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:55.315 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:55.315 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 269 of 281
+2023-02-02 15:19:55.336 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:55.815 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:55.815 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 270 of 281
+2023-02-02 15:19:55.834 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:56.316 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:56.316 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 271 of 281
+2023-02-02 15:19:56.336 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:56.820 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:56.820 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 272 of 281
+2023-02-02 15:19:56.839 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:57.310 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:57.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 273 of 281
+2023-02-02 15:19:57.330 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:57.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:57.809 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 274 of 281
+2023-02-02 15:19:57.828 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:58.308 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:58.309 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 275 of 281
+2023-02-02 15:19:58.328 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:58.816 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:58.816 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 276 of 281
+2023-02-02 15:19:58.835 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:59.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:59.311 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 277 of 281
+2023-02-02 15:19:59.331 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:19:59.819 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:19:59.819 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 278 of 281
+2023-02-02 15:19:59.840 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:20:00.321 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:20:00.321 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 279 of 281
+2023-02-02 15:20:00.342 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:20:00.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:20:00.814 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:190 - Converting easting and northing into latitude and longitude for site: 280 of 281
+2023-02-02 15:20:00.834 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:202 - Performing address lookup
+2023-02-02 15:20:01.313 | INFO     | __main__:get_lat_long_postcode_from_easting_and_northing:209 - Extracting postcode from address
+2023-02-02 15:20:01.320 | INFO     | __main__:reorder_df_columns:229 - Reordering columns in the dataframe
+2023-02-02 15:20:01.323 | INFO     | __main__:save_intermediate_state:294 - Saving intermediate state to file: /source/historic_coastal_landfills/projects/source/utilities/python/hcl_utilities/saved_intermediate_states/hld_df_where_on_or_adjacent_ce_property_yes.pkl
+2023-02-02 15:20:01.326 | INFO     | __main__:run_first_stage:474 - Finished first stage...
+2023-02-02 15:20:01.332 | INFO     | __main__:run_second_stage:480 - Running second stage of the pipeline.
+2023-02-02 15:20:01.334 | INFO     | __main__:create_initial_folium_map:315 - Creating the initial Folium map with tile: OpenStreetMap centred around: (52.636632479920664, -1.3739563475351202)
+2023-02-02 15:20:01.340 | INFO     | __main__:plot_site_markers_on_map:395 - Plotting site markers for: On CE Property | with the colour: red | on the map.
+2023-02-02 15:20:01.370 | INFO     | __main__:plot_site_markers_on_map:395 - Plotting site markers for: Adjacent to CE Property | with the colour: blue | on the map.
+2023-02-02 15:20:01.419 | INFO     | __main__:run_second_stage:507 - Finished second stage...
+2023-02-02 15:20:01.420 | INFO     | __main__:run_programme:537 - Saving the final map to: /source/historic_coastal_landfills/projects/source/utilities/python/hcl_utilities/saved_outputs/map.html
+2023-02-02 15:20:02.211 | INFO     | __main__:<module>:553 - All done! Programme execution took: 00:02:33
+
+Process finished with exit code 0

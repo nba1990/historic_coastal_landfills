@@ -1,0 +1,19 @@
+pytest
+numpy
+pandas
+black
+isort
+openpyxl
+pyproj
+matplotlib
+geopy
+pgeocode
+shapely
+geopandas
+ipython
+folium
+loguru
+xlsxwriter
+branca
+# imageio
+# cv2

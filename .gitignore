@@ -1,2 +1,11 @@
 
 .DS_Store
+
+projects/source/utilities/python/hcl_utilities/config/.config.env
+
+*/__pycache__/
+*/.pytest_cache/
+
+*.pyc
+
+projects/source/utilities/python/hcl_utilities/tests/unit_tests/hcl_math/.pytest_cache/
