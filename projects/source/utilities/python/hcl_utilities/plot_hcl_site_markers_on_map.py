@@ -194,7 +194,7 @@ def get_lat_long_postcode_from_easting_and_northing(
         (
             latitude,
             longitude,
-        ) = hcl_math.coordinates.convert_easting_northing_to_lat_long(
+        ) = hcl_math.coordinates.convert_easting_northing_to_latitude_longitude(
             each_easting, each_northing
         )
         geolocator = Nominatim(user_agent="geoapi_hcl")
@@ -428,7 +428,7 @@ def plot_site_markers_on_map(
         # Create a custom formatted HTML table for each site marker and its popup
         site_html = populate_each_html_table_row_popup(site_details)
         site_popup = folium.Popup(
-            folium.Html(site_html, script=True), max_width=600, max_height=600
+            folium.Html(site_html, script=True), max_width=1200, max_height=600
         )
 
         # For scrollbars, try this: # Reference: https://stackoverflow.com/a/73143192
