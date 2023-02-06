@@ -3,6 +3,7 @@
 import pytest
 
 import hcl_math.combinations
+import read_io.excel_io
 
 
 class TestCombinations:
@@ -20,9 +21,7 @@ class TestCombinations:
     )
     def test_convert_excel_column_letters_to_column_index(self, testdata, expected):
         """Returns expected Excel-style column indices for each of the column letters."""
-        output = hcl_math.combinations.convert_excel_column_letters_to_column_index(
-            testdata
-        )
+        output = read_io.excel_io.convert_excel_column_letters_to_column_index(testdata)
         assert output == expected
 
     @pytest.mark.parametrize(
@@ -39,7 +38,5 @@ class TestCombinations:
     )
     def test_convert_excel_column_index_to_column_letters(self, testdata, expected):
         """Returns expected Excel-style column letters for each of the column indices."""
-        output = hcl_math.combinations.convert_excel_column_index_to_column_letters(
-            testdata
-        )
+        output = read_io.excel_io.convert_excel_column_index_to_column_letters(testdata)
         assert output == expected

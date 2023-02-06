@@ -1,0 +1,14 @@
+/usr/local/anaconda3/envs/hcl_utilities/bin/python /Users/user/source/historic_coastal_landfills/projects/source/utilities/python/hcl_utilities/plot_hcl_site_markers_on_map.py 
+2023-02-06 12:41:53.177 | INFO     | read_io.excel_io:load_excel_column_headers:21 - Reading initial dataset file: /Users/user/source/historic_coastal_landfills/datasets/UK_Historic_Landfill_Sites.xlsx
+2023-02-06 12:41:53.178 | INFO     | read_io.excel_io:load_excel_column_headers:22 - Converting useful column header names to Excel column letters and indices.
+2023-02-06 12:41:54.508 | INFO     | write_io.interim_state_pickle:read_intermediate_state:30 - Reading intermediate state from file: /Users/user/source/historic_coastal_landfills/projects/source/utilities/python/hcl_utilities/saved_intermediate_states/hld_df_where_on_or_adjacent_ce_property_yes.pkl
+2023-02-06 12:41:54.510 | INFO     | __main__:run_second_stage:226 - Running second stage of the pipeline.
+2023-02-06 12:41:54.521 | INFO     | __main__:create_initial_folium_map:50 - Creating the initial Folium map with tile: OpenStreetMap centred around: (52.636632479920664, -1.3739563475351202)
+2023-02-06 12:41:54.531 | INFO     | __main__:run_second_stage:235 - Number of sites - On CE property: 113 | Adjacent to CE property: 168 | Currently unrelated to CE property: 0
+2023-02-06 12:41:54.531 | INFO     | __main__:plot_site_markers_on_map:130 - Plotting 113 site markers for: On CE Property | with the colour: red | on the map.
+2023-02-06 12:41:54.567 | INFO     | __main__:plot_site_markers_on_map:130 - Plotting 168 site markers for: Adjacent to CE Property | with the colour: blue | on the map.
+2023-02-06 12:41:54.623 | INFO     | __main__:run_second_stage:276 - Finished second stage...
+2023-02-06 12:41:54.623 | INFO     | __main__:run_programme:361 - Saving the final map to: /Users/user/source/historic_coastal_landfills/projects/source/utilities/python/hcl_utilities/saved_outputs/map.html
+2023-02-06 12:41:55.543 | INFO     | __main__:<module>:407 - All done! Programme execution took: 00:00:02
+
+Process finished with exit code 0

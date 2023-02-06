@@ -7,303 +7,29 @@
 
 import math
 import operator
-import os
 import pathlib
-import pickle
 import time
+import typing
 
 import folium
-import loguru
 import numpy
-import openpyxl
 import pandas
-from geopy.geocoders import Nominatim
 
-import hcl_math.combinations
-import hcl_math.coordinates
-
-useful_cols = [
-    "HLD reference",
-    "Site name",
-    "Site address",
-    "Licence ./ permit reference",
-    "REGIS reference",
-    "WRC reference",
-    "BGS reference",
-    "WRA reference",
-    "Permit / licence holder",
-    "Permit / licence holder address",
-    "Site operator's name",
-    "Site operator's address",
-    "Site County",
-    "Country",
-    "Local Authority",
-    "District/Unitary Council",
-    "County Council",
-    "Ward",
-    "Constituency",
-    "Region",
-    "OS prefix",
-    "Easting",
-    "Northing",
-    "Latitude",
-    "Longitude",
-    "Landfill Size",
-    "Landfill Notes",
-    "EA Region",
-    "EA Area",
-    "Licence issue date",
-    "Licence surrender date",
-    "First input date",
-    "Last input date",
-    "Inert Waste",
-    "Industrial Waste",
-    "Commercial Waste",
-    "Household Waste",
-    "Special / hazardous Waste",
-    "Liquid / sludge Waste",
-    "Waste unknown",
-    "Gas control",
-    "Leachate containment",
-    "Exempt",
-    "Licensed",
-    "No licence required",
-    "Buffer point",
-    "New Update CE Property Jan 2023?",
-    "Borders other site(s)",
-    "Site(s) nearby",
-    "Is study available?",
-]
-
-
-CURRENT_DIR = pathlib.Path(os.getcwd())
-PARENT_DATASET_PATH = CURRENT_DIR.parent.parent.parent.parent.parent / "datasets"
-DATASET_FILE_NAME = "UK_Historic_Landfill_Sites.xlsx"
-QUALIFIED_DATASET_FILE = PARENT_DATASET_PATH / DATASET_FILE_NAME
-INTERMEDIATE_PICKLE_FILE_NAME = (
-    "saved_intermediate_states/hld_df_where_on_or_adjacent_ce_property_yes.pkl"
+from hcl_constants.constants import (
+    QUALIFIED_DATASET_FILE,
+    QUALIFIED_FOLIUM_MAP_FILE,
+    QUALIFIED_INTERMEDIATE_PICKLE_FILE,
+    MultiProcessingOptionsEnum,
+    SiteMarkersScopeEnum,
+    logger,
 )
-QUALIFIED_INTERMEDIATE_PICKLE_FILE = CURRENT_DIR / INTERMEDIATE_PICKLE_FILE_NAME
-FOLIUM_MAP_FILE_NAME = "saved_outputs/map.html"
-QUALIFIED_FOLIUM_MAP_FILE = CURRENT_DIR / FOLIUM_MAP_FILE_NAME
-
-logger = loguru.logger
-
-
-def get_column_letters_from_names(
-    dataset_path: pathlib.Path = QUALIFIED_DATASET_FILE,
-    sheet_index: int = 0,
-) -> tuple[list[str], list[str], list[int]]:
-    """Get column headers from dataset and convert column names to Excel column letters and their column indices."""
-    logger.info(f"Reading initial dataset file: {dataset_path}")
-    logger.info(
-        f"Converting useful column header names to Excel column letters and indices."
-    )
-    workbook = openpyxl.load_workbook(dataset_path, read_only=True)
-    worksheet = workbook.worksheets[sheet_index]
-    col_headers = []
-    col_letters = []
-    col_indices = []
-
-    for cell in worksheet[1]:
-        col_headers.append(cell.value)
-        col_letters.append(cell.column_letter)
-        col_indices.append(
-            cell.column - 1
-        )  # We need zero-based indexing for pandas DataFrames
-
-    return col_headers, col_letters, col_indices
-
-
-def convert_useful_col_names_to_col_letters_and_indices(
-    col_headers: list[str], col_letters: list[str], col_indices: list[int]
-) -> tuple[list[str], list[int]]:
-    """Convert the predefined useful column names to their corresponding Excel column letters and indices."""
-    useful_col_letters = []
-    useful_col_nums = []
-
-    for each_col_name in useful_cols:
-        useful_col_arr_index = col_headers.index(each_col_name)
-        useful_col_letters.append(col_letters[useful_col_arr_index])
-        useful_col_nums.append(col_indices[useful_col_arr_index])
-
-    return useful_col_letters, useful_col_nums
-
-
-def read_dataset_to_df(
-    dataset_path: pathlib.Path = QUALIFIED_DATASET_FILE,
-    sheet_name: str = "Sites",
-    cols: list[int] = [],
-) -> pandas.DataFrame:
-    """Read the canonical Excel HCL site dataset into pandas DataFrame."""
-    logger.info(f"Reading initial dataset file: {dataset_path}")
-    # noinspection PyTypeChecker
-    hld_df = pandas.read_excel(
-        pathlib.Path(dataset_path), sheet_name=sheet_name, usecols=cols
-    )
-    assert hld_df.shape[1] == len(useful_cols)
-    return hld_df
-
-
-def filter_dataset(
-    hld_df: pandas.DataFrame,
-    filter_column_name: str,
-    filter_criteria: list,
-    combination_operator: operator,
-) -> pandas.DataFrame:
-    """Apply filtration criteria on the specified columns in the DataFrame."""
-    starting_shape = hld_df.shape
-    logger.info(
-        f"Filtering dataset with initial shape: {starting_shape}, "
-        f"filter_column_name: {filter_column_name}, filter_criteria: {filter_criteria}, "
-        f"combination_operator: {combination_operator.__name__}"
-    )
-    combination_operator(
-        hld_df[filter_column_name] == filter_criteria[0],
-        hld_df[filter_column_name] == filter_criteria[1],
-    )
-
-    hld_df = hld_df[
-        combination_operator(
-            hld_df[filter_column_name] == filter_criteria[0],
-            hld_df[filter_column_name] == filter_criteria[1],
-        )
-    ]
-    # Remove the undocumented landfill site with NAN easting and northing  # Shape(281, 50)
-    hld_df = hld_df.iloc[:-1, :]
-
-    logger.info(f"Filtered dataset shape: {hld_df.shape} out of {starting_shape}")
-    return hld_df
-
-
-def get_lat_long_postcode_from_easting_and_northing(
-    hld_df: pandas.DataFrame,
-) -> pandas.DataFrame:
-    """Convert easting and northing to latitude, longitude and extract address and postcode from the coordinates."""
-    latitudes = []
-    longitudes = []
-    postcodes = []
-
-    for index, (each_easting, each_northing) in enumerate(
-        zip(hld_df["Easting"], hld_df["Northing"])
-    ):
-        logger.info(
-            f"Converting easting and northing into latitude and longitude for site: {index} of "
-            f"{hld_df.shape[0]}"
-        )
-        (
-            latitude,
-            longitude,
-        ) = hcl_math.coordinates.convert_easting_northing_to_latitude_longitude(
-            each_easting, each_northing
-        )
-        geolocator = Nominatim(user_agent="geoapi_hcl")
-
-        logger.info(f"Performing address lookup")
-        # Get the location information
-        location = geolocator.reverse(f"{latitude}, {longitude}", exactly_one=True)
-        # Get the address information
-        if location is not None:
-            address = location.raw["address"]
-            # Get the postcode
-            logger.info(f"Extracting postcode from address")
-            postcode = address.get("postcode", "NA")
-        else:
-            address = "NA"
-            # Get the postcode
-            postcode = "NA"
-
-        latitudes.append(latitude)
-        longitudes.append(longitude)
-        postcodes.append(postcode)
-
-    hld_df["Latitude"] = latitudes
-    hld_df["Longitude"] = longitudes
-    hld_df["Postcode"] = postcodes
-
-    return hld_df
-
-
-def reorder_df_columns(hld_df: pandas.DataFrame) -> pandas.DataFrame:
-    """Reorder dataset pandas DataFrame for easy lookup."""
-    logger.info("Reordering columns in the dataframe")
-    # Columns - New Order
-    new_cols_order = [
-        "HLD reference",
-        "Site name",
-        "Site address",
-        "Postcode",
-        "Easting",
-        "Northing",
-        "Latitude",
-        "Longitude",
-        "Licence ./ permit reference",
-        "REGIS reference",
-        "WRC reference",
-        "BGS reference",
-        "WRA reference",
-        "Permit / licence holder",
-        "Permit / licence holder address",
-        "Site operator's name",
-        "Site operator's address",
-        "Site County",
-        "Country",
-        "Local Authority",
-        "District/Unitary Council",
-        "County Council",
-        "Ward",
-        "Constituency",
-        "Region",
-        "OS prefix",
-        "Landfill Size",
-        "Landfill Notes",
-        "EA Region",
-        "EA Area",
-        "Licence issue date",
-        "Licence surrender date",
-        "First input date",
-        "Last input date",
-        "Inert Waste",
-        "Industrial Waste",
-        "Commercial Waste",
-        "Household Waste",
-        "Special / hazardous Waste",
-        "Liquid / sludge Waste",
-        "Waste unknown",
-        "Gas control",
-        "Leachate containment",
-        "Exempt",
-        "Licensed",
-        "No licence required",
-        "Buffer point",
-        "New Update CE Property Jan 2023?",
-        "Borders other site(s)",
-        "Site(s) nearby",
-        "Is study available?",
-    ]
-
-    hld_df = hld_df[new_cols_order]
-    return hld_df
-
-
-def save_intermediate_state(
-    hld_df: pandas.DataFrame,
-    file_path: pathlib.Path = QUALIFIED_INTERMEDIATE_PICKLE_FILE,
-):
-    """Persist precious intermediate state to disk for quicker lookups."""
-    logger.info(f"Saving intermediate state to file: {file_path}")
-    with open(file_path, "wb") as fd:
-        pickle.dump(hld_df, fd)
-
-
-def read_intermediate_state(
-    file_path: pathlib.Path = QUALIFIED_INTERMEDIATE_PICKLE_FILE,
-) -> pandas.DataFrame:
-    """Read from persisted intermediate state to speed up the analysis."""
-    logger.info(f"Reading intermediate state from file: {file_path}")
-    with open(file_path, "rb") as fd:
-        hld_df = pickle.load(fd)
-        return hld_df
+from preprocess.stages_preprocess import run_first_stage
+from read_io.excel_io import (
+    convert_useful_col_names_to_col_letters_and_indices,
+    load_excel_column_headers,
+)
+from timing.timer import MeasureTimer
+from write_io.interim_state_pickle import read_intermediate_state
 
 
 def create_initial_folium_map(
@@ -393,32 +119,10 @@ def plot_site_markers_on_map(
     """Plot various site markers an already created instance of Folium Map."""
 
     logger.info(
-        f"Plotting site markers for: {marker_layer_name} | with the colour: {marker_colour} | on the map."
+        f"Plotting {hld_df.shape[0]} site markers for: {marker_layer_name} | with the colour: {marker_colour} | on the map."
     )
     # Define the marker icon style
     icon_style = "fa-solid fa-xmark"
-
-    # Supported default Marker colours
-    colours = [
-        "red",
-        "blue",
-        "gray",
-        "darkred",
-        "lightred",
-        "orange",
-        "beige",
-        "green",
-        "darkgreen",
-        "lightgreen",
-        "darkblue",
-        "lightblue",
-        "purple",
-        "darkpurple",
-        "pink",
-        "cadetblue",
-        "lightgray",
-        "black",
-    ]
 
     marker_layer = folium.FeatureGroup(name=marker_layer_name)
 
@@ -448,42 +152,33 @@ def plot_site_markers_on_map(
     return folium_map
 
 
-def run_first_stage(cols: list[int]) -> pandas.DataFrame:
-    """Run the first stage of the pipeline starting with reading dataset and ending with persisting internal state."""
-    logger.info("Running first stage of the pipeline.")
-    hld_df = read_dataset_to_df(
-        dataset_path=QUALIFIED_DATASET_FILE, sheet_name="Sites", cols=cols
-    )
-    hld_df_filtered = filter_dataset(
-        hld_df=hld_df,
-        filter_column_name="New Update CE Property Jan 2023?",
-        filter_criteria=["Yes", "Adjacent"],
-        combination_operator=operator.or_,
-    )
-    hld_df_filtered_enriched = get_lat_long_postcode_from_easting_and_northing(
-        hld_df=hld_df_filtered
-    )
-    hld_df_filtered_enriched_reordered = reorder_df_columns(
-        hld_df=hld_df_filtered_enriched
-    )
-    save_intermediate_state(
-        hld_df=hld_df_filtered_enriched_reordered,
-        file_path=QUALIFIED_INTERMEDIATE_PICKLE_FILE,
-    )
-
-    logger.info("Finished first stage...")
-    return hld_df_filtered_enriched_reordered
-
-
-def run_second_stage(hld_df: pandas.DataFrame) -> folium.Map:
+def run_second_stage(
+    hld_df: pandas.DataFrame,
+    filter_column_name: str,
+    markers_scope: SiteMarkersScopeEnum,
+) -> folium.Map:
     """Run the second stage of the pipeline by plotting HCL site markers on an instance of OpenStreetMap."""
     logger.info("Running second stage of the pipeline.")
 
     folium_map = create_initial_folium_map(hld_df[["Latitude", "Longitude"]])
-    hld_df_on_ce_property = hld_df[hld_df["New Update CE Property Jan 2023?"] == "Yes"]
-    hld_df_adjacent_ce_property = hld_df[
-        hld_df["New Update CE Property Jan 2023?"] == "Adjacent"
+    hld_df_on_ce_property = hld_df[hld_df[filter_column_name] == "Yes"]
+    hld_df_adjacent_ce_property = hld_df[hld_df[filter_column_name] == "Adjacent"]
+    hld_df_rest = hld_df[
+        (hld_df[filter_column_name] != "Yes")
+        & (hld_df[filter_column_name] != "Adjacent")
     ]
+    logger.info(
+        f"Number of sites - On CE property: {hld_df_on_ce_property.shape[0]} | "
+        f"Adjacent to CE property: {hld_df_adjacent_ce_property.shape[0]} | "
+        f"Currently unrelated to CE property: {hld_df_rest.shape[0]}"
+    )
+
+    assert (
+        hld_df_on_ce_property.shape[0]
+        + hld_df_adjacent_ce_property.shape[0]
+        + hld_df_rest.shape[0]
+        == hld_df.shape[0]
+    )
 
     # Plot site markers for sites that are on CE property
     folium_map = plot_site_markers_on_map(
@@ -501,6 +196,15 @@ def run_second_stage(hld_df: pandas.DataFrame) -> folium.Map:
         folium_map=folium_map,
     )
 
+    if markers_scope == SiteMarkersScopeEnum.ALL_HCL_SITES:
+        # Plot site markers for the rest of the sites currently unrelated to CE properties
+        folium_map = plot_site_markers_on_map(
+            hld_df=hld_df_rest,
+            marker_colour="purple",
+            marker_layer_name="Currently unrelated to CE Properties",
+            folium_map=folium_map,
+        )
+
     # Add the layer control
     folium.LayerControl().add_to(folium_map)
 
@@ -508,10 +212,43 @@ def run_second_stage(hld_df: pandas.DataFrame) -> folium.Map:
     return folium_map
 
 
-def run_programme(load_existing: bool = True) -> tuple[list[int], pandas.DataFrame]:
-    """Main entry point for the whole programme to plot HCL site markers on the map from the dataset."""
-    column_headers, column_letters, column_indices = get_column_letters_from_names(
-        dataset_path=QUALIFIED_DATASET_FILE, sheet_index=0
+def run_programme(
+    dataset_path: pathlib.Path,
+    sheet_name: str,
+    sheet_index: int,
+    filter_column_name: str,
+    filter_criteria: list[str],
+    combination_operator: typing.Optional[typing.Callable],
+    enable_postcode_extraction: bool,
+    multiprocessing_options: MultiProcessingOptionsEnum,
+    intermediate_state_file_path: pathlib.Path,
+    markers_scope: SiteMarkersScopeEnum,
+    output_map_file_path: pathlib.Path,
+    load_existing: bool = True,
+) -> tuple[list[int], pandas.DataFrame]:
+    """
+    Main entry point for the whole programme to plot HCL site markers on the map from the dataset.
+
+    Supported arguments/parameters and their examples:
+    dataset_path: pathlib.Path = QUALIFIED_DATASET_FILE
+    sheet_name: str = "Sites"
+    sheet_index: int = 0
+    filter_column_name: str = "New Update CE Property Jan 2023?"
+    filter_criteria: list[str] = ["Yes", "Adjacent"]
+    combination_operator: typing.Optional[typing.Callable] = [None, operator.or_, operator.and_]
+    enable_postcode_extraction: bool = [True, False]
+    multiprocessing_options: MultiProcessingOptionsEnum = [
+        MultiProcessingOptionsEnum.SIMPLE_SINGLE_PROCESS_ONLY,
+        MultiProcessingOptionsEnum.MULTI_PROCESS_WITH_ONLY_PHYSICAL_CORES_NO_HT,
+        MultiProcessingOptionsEnum.MULTI_PROCESS_INCLUDING_LOGICAL_CORES_WITH_HT
+        ]
+    intermediate_state_file_path: pathlib.Path = QUALIFIED_INTERMEDIATE_PICKLE_FILE
+    markers_scope: SiteMarkersScopeEnum = [SiteMarkersScopeEnum.ONLY_CE_PROPERTIES, SiteMarkersScopeEnum.ALL_HCL_SITES]
+    output_map_file_path: pathlib.Path = QUALIFIED_FOLIUM_MAP_FILE
+    load_existing: bool = [True, False]
+    """
+    column_headers, column_letters, column_indices = load_excel_column_headers(
+        dataset_path=dataset_path, sheet_index=sheet_index
     )
     (
         useful_column_letters,
@@ -521,37 +258,88 @@ def run_programme(load_existing: bool = True) -> tuple[list[int], pandas.DataFra
     )
 
     if load_existing:
-        if not QUALIFIED_INTERMEDIATE_PICKLE_FILE.exists():
-            hld_df_filtered_enriched_reordered = run_first_stage(useful_column_nums)
+        if not intermediate_state_file_path.exists():
+            hld_df_filtered_enriched_reordered = run_first_stage(
+                dataset_path,
+                sheet_name,
+                useful_column_nums,
+                filter_column_name,
+                filter_criteria,
+                combination_operator,
+                enable_postcode_extraction,
+                multiprocessing_options,
+                intermediate_state_file_path,
+            )
 
         else:
             hld_df_filtered_enriched_reordered = read_intermediate_state(
-                file_path=QUALIFIED_INTERMEDIATE_PICKLE_FILE
+                file_path=intermediate_state_file_path
             )
 
     else:  # Run the first stage regardless of pre-existing intermediate state
-        hld_df_filtered_enriched_reordered = run_first_stage(useful_column_nums)
+        hld_df_filtered_enriched_reordered = run_first_stage(
+            dataset_path,
+            sheet_name,
+            useful_column_nums,
+            filter_column_name,
+            filter_criteria,
+            combination_operator,
+            enable_postcode_extraction,
+            multiprocessing_options,
+            intermediate_state_file_path,
+        )
 
-    folium_map = run_second_stage(hld_df_filtered_enriched_reordered)
+    folium_map = run_second_stage(
+        hld_df_filtered_enriched_reordered, filter_column_name, markers_scope
+    )
 
-    logger.info(f"Saving the final map to: {QUALIFIED_FOLIUM_MAP_FILE}")
-    folium_map.save(f"{FOLIUM_MAP_FILE_NAME}")
+    logger.info(f"Saving the final map to: {output_map_file_path}")
+    folium_map.save(f"{output_map_file_path}")
 
     return useful_column_nums, hld_df_filtered_enriched_reordered
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == "__main__":
+    # TODO: Support command line arguments for running the programme through terminal based applications.
+    # TODO: Add support for persistence and resume operations + error handling and recovery.
+    # TODO: Improve project-wide docstrings and update params and args support.
     """Main entry point for reading HCL dataset and plotting appropriate site markers on an interactive map."""
 
-    start_time = time.time()
-    # useful_cols_nums, hld_df_dataset = run_programme(load_existing=False)  # Usually takes 00:02:33 minutes (24x slower)  # noqa
-    useful_cols_nums, hld_df_dataset = run_programme(
-        load_existing=True
-    )  # Usually takes 00:00:02 seconds
+    # Refer: https://github.com/psf/black/issues/451
+    # Refer: https://stackoverflow.com/a/58584557
 
-    end_time = time.time()
-    elapsed_time = end_time - start_time
+    with MeasureTimer() as measure_timer:
+        # useful_cols_nums, hld_df_dataset = run_programme(
+        #     dataset_path=QUALIFIED_DATASET_FILE,
+        #     sheet_name="Sites",
+        #     sheet_index=0,
+        #     filter_column_name="New Update CE Property Jan 2023?",
+        #     filter_criteria=["Yes", "Adjacent"],
+        #     combination_operator=operator.or_,
+        #     enable_postcode_extraction=False,
+        #     multiprocessing_options=MultiProcessingOptionsEnum.MULTI_PROCESS_INCLUDING_LOGICAL_CORES_WITH_HT,
+        #     intermediate_state_file_path=QUALIFIED_INTERMEDIATE_PICKLE_FILE,
+        #     markers_scope=SiteMarkersScopeEnum.ONLY_CE_PROPERTIES,
+        #     output_map_file_path=QUALIFIED_FOLIUM_MAP_FILE,
+        #     load_existing=False,
+        # )  # Usually takes 00:02:33 minutes (24x slower)
+
+        useful_cols_nums, hld_df_dataset = run_programme(
+            dataset_path=QUALIFIED_DATASET_FILE,
+            sheet_name="Sites",
+            sheet_index=0,
+            filter_column_name="New Update CE Property Jan 2023?",
+            filter_criteria=["Yes", "Adjacent"],
+            combination_operator=operator.or_,
+            enable_postcode_extraction=False,
+            multiprocessing_options=MultiProcessingOptionsEnum.MULTI_PROCESS_INCLUDING_LOGICAL_CORES_WITH_HT,
+            intermediate_state_file_path=QUALIFIED_INTERMEDIATE_PICKLE_FILE,
+            markers_scope=SiteMarkersScopeEnum.ONLY_CE_PROPERTIES,
+            output_map_file_path=QUALIFIED_FOLIUM_MAP_FILE,
+            load_existing=True,
+        )  # Usually takes 00:00:02 seconds
+
     logger.info(
-        f"All done! Programme execution took: {time.strftime('%H:%M:%S', time.gmtime(elapsed_time))}"
+        f"All done! Programme execution took: {time.strftime('%H:%M:%S', time.gmtime(measure_timer.elapsed_time))}"
     )

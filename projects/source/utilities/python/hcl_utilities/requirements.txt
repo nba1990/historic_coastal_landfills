@@ -15,5 +15,7 @@ folium
 loguru
 xlsxwriter
 branca
+pgeocode
+psutil
 # imageio
 # cv2
