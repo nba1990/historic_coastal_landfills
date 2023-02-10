@@ -36,10 +36,10 @@ def run_first_stage(
 
     Supported arguments/parameters and their examples:
     dataset_path: pathlib.Path = QUALIFIED_DATASET_FILE
-    sheet_name: str = "Sites"
+    input_data_sheet_name: str = "Sites"
     cols: list[int]
     filter_column_name: str = "New Update CE Property Jan 2023?"
-    filter_criteria: list[str] = ["Yes", "Adjacent"]
+    primary_filter_criteria: list[str] = ["Yes", "Adjacent"]
     combination_operator: typing.Optional[typing.Callable] = [None, operator.or_, operator.and_]
     enable_postcode_extraction: bool = [True, False]
     multiprocessing_options: MultiProcessingOptionsEnum = [

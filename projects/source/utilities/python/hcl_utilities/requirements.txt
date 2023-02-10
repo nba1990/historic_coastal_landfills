@@ -17,5 +17,9 @@ xlsxwriter
 branca
 pgeocode
 psutil
+plotly
+dash
+kaleido
+# dash-renderer
 # imageio
 # cv2

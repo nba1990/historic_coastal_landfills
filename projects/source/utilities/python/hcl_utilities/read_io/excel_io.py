@@ -6,11 +6,51 @@
 # Date First Authored: 04/02/2023
 
 import pathlib
+import typing
 
 import openpyxl
 import pandas
 
 from hcl_constants.constants import QUALIFIED_DATASET_FILE, USEFUL_COLS, logger
+
+
+class ExcelLoadWBContextManagerSupported:
+    """Python `with` Context manager supported Excel load workbook into file pointer class and methods."""
+
+    # TODO: Change this class definition to be automatically adaptive instead of having to manually update this based
+    #  -- on the changes in `openpyxl.load_workbook()` method.
+    def __init__(
+        self,
+        filename: pathlib.Path,
+        read_only: bool = False,
+        keep_vba: bool = False,
+        data_only: bool = False,
+        keep_links: bool = True,
+    ):
+        self.filename: pathlib.Path = filename
+        self.read_only: bool = read_only
+        self.keep_vba: bool = keep_vba
+        self.data_only: bool = data_only
+        self.keep_links: bool = keep_links
+
+        self.workbook: typing.Optional[openpyxl.workbook.Workbook] = None
+
+    def __enter__(self) -> openpyxl.workbook.Workbook:
+        self.workbook = self.load_workbook()
+        return self.workbook
+
+    def __exit__(self, *args):
+        self.workbook.close()
+        self.workbook = None
+
+    def load_workbook(self) -> openpyxl.workbook.Workbook:
+        return openpyxl.load_workbook(
+            self.filename,
+            self.read_only,
+            self.keep_vba,
+            self.data_only,
+            self.keep_links,
+        )
 
 
 def load_excel_column_headers(
@@ -22,18 +62,18 @@ def load_excel_column_headers(
     logger.info(
         f"Converting useful column header names to Excel column letters and indices."
     )
-    workbook = openpyxl.load_workbook(dataset_path, read_only=True)
-    worksheet = workbook.worksheets[sheet_index]
-    col_headers = []
-    col_letters = []
-    col_indices = []
+    with ExcelLoadWBContextManagerSupported(dataset_path, read_only=True) as workbook:
+        worksheet = workbook.worksheets[sheet_index]
+        col_headers = []
+        col_letters = []
+        col_indices = []
 
-    for cell in worksheet[1]:
-        col_headers.append(cell.value)
-        col_letters.append(cell.column_letter)
-        col_indices.append(
-            cell.column - 1
-        )  # We need zero-based indexing for pandas DataFrames
+        for cell in worksheet[1]:
+            col_headers.append(cell.value)
+            col_letters.append(cell.column_letter)
+            col_indices.append(
+                cell.column - 1
+            )  # We need zero-based indexing for pandas DataFrames
 
     return col_headers, col_letters, col_indices
 

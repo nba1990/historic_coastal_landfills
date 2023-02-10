@@ -231,10 +231,10 @@ def run_programme(
 
     Supported arguments/parameters and their examples:
     dataset_path: pathlib.Path = QUALIFIED_DATASET_FILE
-    sheet_name: str = "Sites"
+    input_data_sheet_name: str = "Sites"
     sheet_index: int = 0
     filter_column_name: str = "New Update CE Property Jan 2023?"
-    filter_criteria: list[str] = ["Yes", "Adjacent"]
+    primary_filter_criteria: list[str] = ["Yes", "Adjacent"]
     combination_operator: typing.Optional[typing.Callable] = [None, operator.or_, operator.and_]
     enable_postcode_extraction: bool = [True, False]
     multiprocessing_options: MultiProcessingOptionsEnum = [
@@ -312,10 +312,10 @@ if __name__ == "__main__":
     with MeasureTimer() as measure_timer:
         # useful_cols_nums, hld_df_dataset = run_programme(
         #     dataset_path=QUALIFIED_DATASET_FILE,
-        #     sheet_name="Sites",
+        #     input_data_sheet_name="Sites",
         #     sheet_index=0,
         #     filter_column_name="New Update CE Property Jan 2023?",
-        #     filter_criteria=["Yes", "Adjacent"],
+        #     primary_filter_criteria=["Yes", "Adjacent"],
         #     combination_operator=operator.or_,
         #     enable_postcode_extraction=False,
         #     multiprocessing_options=MultiProcessingOptionsEnum.MULTI_PROCESS_INCLUDING_LOGICAL_CORES_WITH_HT,
