@@ -122,13 +122,19 @@ def plot_site_markers_on_map(
         f"Plotting {hld_df.shape[0]} site markers for: {marker_layer_name} | with the colour: {marker_colour} | on the map."
     )
     # Define the marker icon style
+    icon_prefix = "fa"
     icon_style = "fa-solid fa-xmark"
+    icon_size = (10, 10)
 
     marker_layer = folium.FeatureGroup(name=marker_layer_name)
 
     # Add markers for each of the given coordinates
     for site_index, site_details in hld_df.iterrows():
-        styled_icon = folium.Icon(prefix="fa", icon=icon_style, color=marker_colour)
+        # styled_icon = folium.Icon(prefix=icon_prefix, icon=icon_style, color=marker_colour, icon_size=icon_size)
+        styled_icon = folium.Icon(prefix=icon_prefix, icon=icon_style, color=marker_colour)
+        # styled_icon = folium.Icon(icon=icon_style, color=marker_colour, icon_size=icon_size)
+        # styled_icon = folium.Icon(icon=icon_style, color=marker_colour)
+
         # Create a custom formatted HTML table for each site marker and its popup
         site_html = populate_each_html_table_row_popup(site_details)
         site_popup = folium.Popup(
@@ -140,10 +146,22 @@ def plot_site_markers_on_map(
         # iframe = branca.element.IFrame(html=site_html, width=710, height=300)
         # site_popup = folium.Popup(iframe, max_width=710, max_height=650)
 
-        folium.Marker(
+        # Add a styled marker with a particular shape and colour
+        # folium.Marker(
+        #     location=(site_details["Latitude"], site_details["Longitude"]),
+        #     icon=styled_icon,
+        #     tooltip=f'{site_details["HLD reference"]}: {site_details["Site name"]}',
+        #     popup=site_popup,
+        # ).add_to(marker_layer)
+
+        # Add a simple dot as circle marker of small radius and colour
+        folium.CircleMarker(
             location=(site_details["Latitude"], site_details["Longitude"]),
-            icon=styled_icon,
-            tooltip=site_details["Site name"],
+            radius=2,
+            color=marker_colour,
+            fill=True,
+            fill_color=marker_colour,
+            tooltip=f'{site_details["HLD reference"]}: {site_details["Site name"]}',
             popup=site_popup,
         ).add_to(marker_layer)
 
