@@ -24,8 +24,8 @@ def run_first_stage(
     dataset_path: pathlib.Path,
     sheet_name: str,
     cols: list[int],
-    filter_column_name: str,
-    filter_criteria: list[str],
+    filter_column_name: typing.Optional[str],
+    filter_criteria: typing.Optional[list[str]],
     combination_operator: typing.Optional[typing.Callable],
     enable_postcode_extraction: bool,
     multiprocessing_options: MultiProcessingOptionsEnum,
@@ -53,12 +53,17 @@ def run_first_stage(
     hld_df = read_dataset_to_df(
         dataset_path=dataset_path, sheet_name=sheet_name, cols=cols
     )
-    hld_df_filtered = filter_dataset(
-        hld_df=hld_df,
-        filter_column_name=filter_column_name,
-        filter_criteria=filter_criteria,
-        combination_operator=combination_operator,
-    )
+
+    if filter_column_name is None or filter_criteria is None:
+        hld_df_filtered = hld_df
+    else:
+        hld_df_filtered = filter_dataset(
+            hld_df=hld_df,
+            filter_column_name=filter_column_name,
+            filter_criteria=filter_criteria,
+            combination_operator=combination_operator,
+        )
+
     hld_df_filtered_enriched = get_lat_long_postcode_from_easting_and_northing(
         hld_df=hld_df_filtered,
         enable_postcode_extraction=enable_postcode_extraction,

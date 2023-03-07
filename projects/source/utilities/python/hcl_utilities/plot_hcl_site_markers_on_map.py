@@ -19,6 +19,7 @@ from hcl_constants.constants import (
     QUALIFIED_DATASET_FILE,
     QUALIFIED_FOLIUM_MAP_FILE,
     QUALIFIED_INTERMEDIATE_PICKLE_FILE,
+    USEFUL_COLS,
     MultiProcessingOptionsEnum,
     SiteMarkersScopeEnum,
     logger,
@@ -131,7 +132,9 @@ def plot_site_markers_on_map(
     # Add markers for each of the given coordinates
     for site_index, site_details in hld_df.iterrows():
         # styled_icon = folium.Icon(prefix=icon_prefix, icon=icon_style, color=marker_colour, icon_size=icon_size)
-        styled_icon = folium.Icon(prefix=icon_prefix, icon=icon_style, color=marker_colour)
+        styled_icon = folium.Icon(
+            prefix=icon_prefix, icon=icon_style, color=marker_colour
+        )
         # styled_icon = folium.Icon(icon=icon_style, color=marker_colour, icon_size=icon_size)
         # styled_icon = folium.Icon(icon=icon_style, color=marker_colour)
 
@@ -272,7 +275,7 @@ def run_programme(
         useful_column_letters,
         useful_column_nums,
     ) = convert_useful_col_names_to_col_letters_and_indices(
-        column_headers, column_letters, column_indices
+        USEFUL_COLS, column_headers, column_letters, column_indices
     )
 
     if load_existing:

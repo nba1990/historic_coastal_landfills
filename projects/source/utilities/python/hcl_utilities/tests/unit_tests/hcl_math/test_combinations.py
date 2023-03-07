@@ -2,7 +2,6 @@
 
 import pytest
 
-import hcl_math.combinations
 import read_io.excel_io
 
 

@@ -79,13 +79,16 @@ def load_excel_column_headers(
 
 
 def convert_useful_col_names_to_col_letters_and_indices(
-    col_headers: list[str], col_letters: list[str], col_indices: list[int]
+    useful_column_names: list[str],
+    col_headers: list[str],
+    col_letters: list[str],
+    col_indices: list[int],
 ) -> tuple[list[str], list[int]]:
     """Convert the predefined useful column names to their corresponding Excel column letters and indices."""
     useful_col_letters = []
     useful_col_nums = []
 
-    for each_col_name in USEFUL_COLS:
+    for each_col_name in useful_column_names:
         useful_col_arr_index = col_headers.index(each_col_name)
         useful_col_letters.append(col_letters[useful_col_arr_index])
         useful_col_nums.append(col_indices[useful_col_arr_index])
@@ -97,6 +100,7 @@ def read_dataset_to_df(
     dataset_path: pathlib.Path = QUALIFIED_DATASET_FILE,
     sheet_name: str = "Sites",
     cols: list[int] = [],
+    useful_cols: list[str] = USEFUL_COLS,
 ) -> pandas.DataFrame:
     """Read the canonical Excel HCL site dataset into pandas DataFrame."""
     logger.info(f"Reading initial dataset file: {dataset_path}")
@@ -104,7 +108,7 @@ def read_dataset_to_df(
     hld_df = pandas.read_excel(
         pathlib.Path(dataset_path), sheet_name=sheet_name, usecols=cols
     )
-    assert hld_df.shape[1] == len(USEFUL_COLS)
+    assert hld_df.shape[1] == len(useful_cols)
     return hld_df
 
 

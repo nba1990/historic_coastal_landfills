@@ -6,7 +6,6 @@
 # Date First Authored: 04/02/2023
 
 import multiprocessing
-import operator
 import time
 import typing
 

@@ -8,7 +8,6 @@ import pathlib
 import typing
 
 import dash
-import numpy.testing
 import pandas
 import plotly.express
 import plotly.subplots

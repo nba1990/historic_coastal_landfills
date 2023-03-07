@@ -18,6 +18,7 @@ import pandas
 from hcl_math.hcl_constants.constants import (
     QUALIFIED_DATASET_FILE,
     QUALIFIED_INTERMEDIATE_PICKLE_FILE,
+    USEFUL_COLS,
     WASTE_FILTRATION_CRITERIA,
     MultiProcessingOptionsEnum,
     logger,
@@ -50,7 +51,7 @@ WASTE_CRITERIA_COL_INDICES_CHAR = [
     USEFUL_COLUMN_LETTERS,
     USEFUL_COLUMN_NUMS,
 ) = convert_useful_col_names_to_col_letters_and_indices(
-    EXCEL_COL_HEADERS, EXCEL_COL_LETTERS, EXCEL_COL_INDICES
+    USEFUL_COLS, EXCEL_COL_HEADERS, EXCEL_COL_LETTERS, EXCEL_COL_INDICES
 )
 STATS_DF_OUTPUT_COLS = [
     "Experiment Index",
