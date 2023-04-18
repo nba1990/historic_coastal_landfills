@@ -148,6 +148,7 @@ INTERMEDIATE_PICKLE_FILE_NAME = (
     "saved_intermediate_states/hld_df_where_on_or_adjacent_ce_property_yes.pkl"
 )
 QUALIFIED_INTERMEDIATE_PICKLE_FILE = CURRENT_DIR / INTERMEDIATE_PICKLE_FILE_NAME
+SAVED_OUTPUTS_FILE_PATH = CURRENT_DIR / "saved_outputs"
 FOLIUM_MAP_FILE_NAME = "saved_outputs/map.html"
 QUALIFIED_FOLIUM_MAP_FILE = CURRENT_DIR / FOLIUM_MAP_FILE_NAME
 logger = loguru.logger

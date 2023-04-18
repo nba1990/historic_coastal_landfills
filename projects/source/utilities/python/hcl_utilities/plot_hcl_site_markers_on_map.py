@@ -5,6 +5,7 @@
 # Author: Bharadwaj Raman
 # Date First Authored: 27/01/2023
 
+import json
 import math
 import operator
 import pathlib
@@ -12,6 +13,7 @@ import time
 import typing
 
 import folium
+import folium.plugins
 import numpy
 import pandas
 
@@ -19,6 +21,7 @@ from hcl_constants.constants import (
     QUALIFIED_DATASET_FILE,
     QUALIFIED_FOLIUM_MAP_FILE,
     QUALIFIED_INTERMEDIATE_PICKLE_FILE,
+    SAVED_OUTPUTS_FILE_PATH,
     USEFUL_COLS,
     MultiProcessingOptionsEnum,
     SiteMarkersScopeEnum,
@@ -116,7 +119,7 @@ def plot_site_markers_on_map(
     marker_colour: str,
     marker_layer_name: str,
     folium_map: folium.Map,
-) -> folium.Map:
+) -> tuple[folium.Map, folium.FeatureGroup]:
     """Plot various site markers an already created instance of Folium Map."""
 
     logger.info(
@@ -128,6 +131,15 @@ def plot_site_markers_on_map(
     icon_size = (10, 10)
 
     marker_layer = folium.FeatureGroup(name=marker_layer_name)
+
+    # Reset the index of the dataframe
+    hld_df.reset_index(inplace=True, drop=True)
+
+    # Save the dataframe as a JSON file if a previous dump does not exist
+    if not pathlib.Path(SAVED_OUTPUTS_FILE_PATH / "landfill_data.json").exists():
+        json_data = hld_df.to_json(orient="records")
+        with open(SAVED_OUTPUTS_FILE_PATH / "landfill_data.json", "w") as f:
+            f.write(json_data)
 
     # Add markers for each of the given coordinates
     for site_index, site_details in hld_df.iterrows():
@@ -170,7 +182,7 @@ def plot_site_markers_on_map(
 
     marker_layer.add_to(folium_map)
 
-    return folium_map
+    return folium_map, marker_layer
 
 
 def run_second_stage(
@@ -181,6 +193,9 @@ def run_second_stage(
     """Run the second stage of the pipeline by plotting HCL site markers on an instance of OpenStreetMap."""
     logger.info("Running second stage of the pipeline.")
 
+    hld_df_relevant = hld_df[
+        (hld_df[filter_column_name] == "Yes") | (hld_df[filter_column_name] == "No")
+    ]
     folium_map = create_initial_folium_map(hld_df[["Latitude", "Longitude"]])
     hld_df_on_ce_property = hld_df[hld_df[filter_column_name] == "Yes"]
     hld_df_adjacent_ce_property = hld_df[hld_df[filter_column_name] == "Adjacent"]
@@ -201,8 +216,16 @@ def run_second_stage(
         == hld_df.shape[0]
     )
 
+    # # Plot site markers for all relevant CE sites
+    # folium_map, all_ce_relevant_sites_marker_layer = plot_site_markers_on_map(
+    #     hld_df=hld_df,
+    #     marker_colour="orange",
+    #     marker_layer_name="All CE Property relevant sites",
+    #     folium_map=folium_map,
+    # )
+
     # Plot site markers for sites that are on CE property
-    folium_map = plot_site_markers_on_map(
+    folium_map, ce_marker_layer = plot_site_markers_on_map(
         hld_df=hld_df_on_ce_property,
         marker_colour="red",
         marker_layer_name="On CE Property",
@@ -210,7 +233,7 @@ def run_second_stage(
     )
 
     # Plot site markers for sites that are adjacent to CE property
-    folium_map = plot_site_markers_on_map(
+    folium_map, adj_ce_marker_layer = plot_site_markers_on_map(
         hld_df=hld_df_adjacent_ce_property,
         marker_colour="blue",
         marker_layer_name="Adjacent to CE Property",
@@ -219,12 +242,17 @@ def run_second_stage(
 
     if markers_scope == SiteMarkersScopeEnum.ALL_HCL_SITES:
         # Plot site markers for the rest of the sites currently unrelated to CE properties
-        folium_map = plot_site_markers_on_map(
+        folium_map, rest_properties_marker_layer = plot_site_markers_on_map(
             hld_df=hld_df_rest,
             marker_colour="purple",
             marker_layer_name="Currently unrelated to CE Properties",
             folium_map=folium_map,
         )
+
+    # Add search functionality
+    folium.plugins.Geocoder(
+        position="topleft", placeholder="Search for an address..."
+    ).add_to(folium_map)
 
     # Add the layer control
     folium.LayerControl().add_to(folium_map)
@@ -333,10 +361,10 @@ if __name__ == "__main__":
     with MeasureTimer() as measure_timer:
         # useful_cols_nums, hld_df_dataset = run_programme(
         #     dataset_path=QUALIFIED_DATASET_FILE,
-        #     input_data_sheet_name="Sites",
+        #     sheet_name="Sites",
         #     sheet_index=0,
         #     filter_column_name="New Update CE Property Jan 2023?",
-        #     primary_filter_criteria=["Yes", "Adjacent"],
+        #     filter_criteria=["Yes", "Adjacent"],
         #     combination_operator=operator.or_,
         #     enable_postcode_extraction=False,
         #     multiprocessing_options=MultiProcessingOptionsEnum.MULTI_PROCESS_INCLUDING_LOGICAL_CORES_WITH_HT,

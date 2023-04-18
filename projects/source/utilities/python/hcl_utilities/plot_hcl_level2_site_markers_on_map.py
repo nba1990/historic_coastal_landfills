@@ -171,8 +171,10 @@ def overwrite_cells_in_excel_worksheet(
                     old_cell_value = worksheet[cell_coordinates].value
 
                     if old_cell_value != cell_value:
-                        logger.info(f"Overwriting cell: {cell_coordinates} containing original value: "
-                                    f"<{old_cell_value}> | with the new value: <{cell_value}>")
+                        logger.info(
+                            f"Overwriting cell: {cell_coordinates} containing original value: "
+                            f"<{old_cell_value}> | with the new value: <{cell_value}>"
+                        )
                     # Overwrite the cell value in the Excel worksheet
                     worksheet[cell_coordinates] = cell_value
 
